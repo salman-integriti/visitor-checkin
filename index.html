@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Office Visitor Check-In</title>
-  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,13 +28,7 @@
       --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg-gradient);
@@ -47,7 +40,6 @@
       align-items: center;
       padding: 24px 16px;
       line-height: 1.5;
-      position: relative;
     }
 
     .card {
@@ -75,9 +67,9 @@
     }
 
     .header-logo {
-      max-width: 70px;
+      max-width: 65px;
       height: auto;
-      margin-bottom: 5px;
+      margin-bottom: 12px;
       display: inline-block;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
@@ -95,48 +87,16 @@
       margin-bottom: 8px;
     }
 
-    .card-header h1 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
+    .card-header h1 { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .card-header p { font-size: 0.85rem; color: #94a3b8; }
+    .card-body { padding: 28px 24px; }
+    .form-group { margin-bottom: 18px; }
 
-    .card-header p {
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
+    label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-main); margin-bottom: 6px; }
+    .required-star { color: #dc2626; margin-left: 2px; }
+    .optional-tag { font-size: 0.75rem; font-weight: 400; color: var(--text-muted); margin-left: 4px; }
 
-    .card-body {
-      padding: 28px 24px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 6px;
-    }
-
-    .required-star {
-      color: #dc2626;
-      margin-left: 2px;
-    }
-
-    .optional-tag {
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      margin-left: 4px;
-    }
-
-    input,
-    select {
+    input, select {
       width: 100%;
       padding: 12px 14px;
       font-size: 0.95rem;
@@ -157,19 +117,14 @@
       padding-right: 40px;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       outline: none;
       background-color: #ffffff;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px var(--primary-focus);
     }
 
-    .field-hint {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .field-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
 
     .btn-submit {
       width: 100%;
@@ -190,16 +145,8 @@
       box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2);
       transition: background 0.2s ease, transform 0.1s ease;
     }
+    .btn-submit:hover { background-color: var(--primary-hover); }
 
-    .btn-submit:hover {
-      background-color: var(--primary-hover);
-    }
-
-    .btn-submit:active {
-      transform: translateY(1px);
-    }
-
-    /* Status Alert */
     .alert {
       display: none;
       padding: 14px 16px;
@@ -208,25 +155,11 @@
       font-weight: 500;
       margin-bottom: 20px;
       border: 1px solid transparent;
-      align-items: flex-start;
       gap: 10px;
     }
-
-    .alert.show {
-      display: flex;
-    }
-
-    .alert-success {
-      background-color: var(--success-bg);
-      color: var(--success-text);
-      border-color: var(--success-border);
-    }
-
-    .alert-error {
-      background-color: var(--error-bg);
-      color: var(--error-text);
-      border-color: var(--error-border);
-    }
+    .alert.show { display: flex; }
+    .alert-success { background-color: var(--success-bg); color: var(--success-text); border-color: var(--success-border); }
+    .alert-error { background-color: var(--error-bg); color: var(--error-text); border-color: var(--error-border); }
 
     .card-footer {
       text-align: center;
@@ -240,10 +173,7 @@
     /* Modal / Pop-up Styles */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(4px);
       display: none;
@@ -252,11 +182,7 @@
       z-index: 1000;
       padding: 16px;
     }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
+    .modal-overlay.active { display: flex; }
     .modal-box {
       background: #ffffff;
       width: 100%;
@@ -264,133 +190,39 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
-      animation: modalScale 0.25s ease-out;
     }
+    .modal-header { background: #0f172a; color: #ffffff; padding: 16px 20px; }
+    .modal-header h3 { font-size: 1.15rem; font-weight: 600; }
+    .modal-body { padding: 20px; font-size: 0.88rem; }
+    .review-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f1f5f9; }
+    .review-label { color: var(--text-muted); font-weight: 500; }
+    .review-val { font-weight: 600; color: var(--text-main); text-align: right; }
+    .modal-actions { display: flex; gap: 10px; padding: 16px 20px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; }
+    .btn-secondary { flex: 1; padding: 11px; border-radius: 6px; background: #e2e8f0; color: #334155; border: none; font-weight: 600; cursor: pointer; }
+    .btn-confirm { flex: 1.3; padding: 11px; border-radius: 6px; background: var(--primary); color: #ffffff; border: none; font-weight: 600; cursor: pointer; }
 
-    @keyframes modalScale {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-header {
-      background: #0f172a;
-      color: #ffffff;
-      padding: 16px 20px;
-    }
-
-    .modal-header h3 {
-      font-size: 1.15rem;
-      font-weight: 600;
-    }
-
-    .modal-body {
-      padding: 20px;
-      font-size: 0.88rem;
-    }
-
-    .review-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .review-label {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .review-val {
-      font-weight: 600;
-      color: var(--text-main);
-      text-align: right;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      padding: 16px 20px 20px;
-      background: #f8fafc;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    .btn-secondary {
-      flex: 1;
-      padding: 11px;
-      border-radius: 6px;
-      background: #e2e8f0;
-      color: #334155;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-confirm {
-      flex: 1.3;
-      padding: 11px;
-      border-radius: 6px;
-      background: var(--primary);
-      color: #ffffff;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    /* =========================================
-       Uiverse.io Full Page Loader Styles
-       ========================================= */
+    /* Uiverse.io Full Page Loader */
     .loader-backdrop {
       display: none;
       position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      top: 0; bottom: 0; left: 0; right: 0;
       background: rgba(255, 255, 255, 0.88);
       z-index: 9999;
       justify-content: center;
       align-items: center;
     }
-
-    .loader-backdrop.active {
-      display: block;
-    }
-
-    .loader {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    .jimu-primary-loading:before,
-    .jimu-primary-loading:after {
-      position: absolute;
-      top: 0;
-      content: '';
-    }
-
-    .jimu-primary-loading:before {
-      left: -19.992px;
-    }
-
-    .jimu-primary-loading:after {
-      left: 19.992px;
-      -webkit-animation-delay: 0.32s !important;
-      animation-delay: 0.32s !important;
-    }
-
-    .jimu-primary-loading:before,
-    .jimu-primary-loading:after,
-    .jimu-primary-loading {
+    .loader-backdrop.active { display: block; }
+    .loader { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+    .jimu-primary-loading:before, .jimu-primary-loading:after { position: absolute; top: 0; content: ''; }
+    .jimu-primary-loading:before { left: -19.992px; }
+    .jimu-primary-loading:after { left: 19.992px; -webkit-animation-delay: 0.32s !important; animation-delay: 0.32s !important; }
+    .jimu-primary-loading:before, .jimu-primary-loading:after, .jimu-primary-loading {
       background: #076fe5;
       -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
       animation: loading-keys-app-loading 0.8s infinite ease-in-out;
       width: 13.6px;
       height: 32px;
     }
-
     .jimu-primary-loading {
       text-indent: -9999em;
       margin: auto;
@@ -400,37 +232,14 @@
       -webkit-animation-delay: 0.16s !important;
       animation-delay: 0.16s !important;
     }
-
-    @-webkit-keyframes loading-keys-app-loading {
-      0%, 80%, 100% {
-        opacity: .75;
-        box-shadow: 0 0 #076fe5;
-        height: 32px;
-      }
-      40% {
-        opacity: 1;
-        box-shadow: 0 -8px #076fe5;
-        height: 40px;
-      }
-    }
-
     @keyframes loading-keys-app-loading {
-      0%, 80%, 100% {
-        opacity: .75;
-        box-shadow: 0 0 #076fe5;
-        height: 32px;
-      }
-      40% {
-        opacity: 1;
-        box-shadow: 0 -8px #076fe5;
-        height: 40px;
-      }
+      0%, 80%, 100% { opacity: .75; box-shadow: 0 0 #076fe5; height: 32px; }
+      40% { opacity: 1; box-shadow: 0 -8px #076fe5; height: 40px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Full-Page Loader Overlay -->
   <div class="loader-backdrop" id="pageLoader">
     <div class="loader">
       <div class="justify-content-center jimu-primary-loading"></div>
@@ -439,66 +248,85 @@
 
   <main class="card">
     <header class="card-header">
-      <!-- 1. Company Logo -->
-      <img src="logo white1.png" alt="Company Logo" class="header-logo" onerror="this.style.display='none'" />
-      <div><span class="badge"><h1>Integrit Reception Desk</h1></span></div>
-      <h3>Visitor Registration</h3>
+      <img src="logo white1.jpg" alt="Company Logo" class="header-logo" onerror="this.style.display='none'" />
+      <div><span class="badge">Reception Desk</span></div>
+      <h1>Visitor Registration</h1>
       <p>Please enter your details below to check in</p>
     </header>
 
     <section class="card-body">
-      <!-- Alert Message -->
       <div id="statusAlert" class="alert" role="alert">
         <div id="alertMessage"></div>
       </div>
 
       <form id="visitorForm" novalidate>
-        <!-- Full Name -->
         <div class="form-group">
           <label for="visitorName">Full Name <span class="required-star">*</span></label>
           <input type="text" id="visitorName" name="visitorName" placeholder="e.g., Ali Raza" required autocomplete="name" />
         </div>
 
-        <!-- Phone Number -->
         <div class="form-group">
           <label for="phone">Phone Number <span class="required-star">*</span></label>
           <input type="tel" id="phone" name="phone" placeholder="e.g., 0300 1234567" required autocomplete="tel" />
           <div class="field-hint">Enter a valid 7–15 digit phone number.</div>
         </div>
 
-        <!-- Company Name -->
         <div class="form-group">
           <label for="company">Company / Organization <span class="optional-tag">(Optional)</span></label>
           <input type="text" id="company" name="company" placeholder="e.g., Integriti Pvt Ltd." autocomplete="organization" />
         </div>
 
-        <!-- Person to Meet -->
+        <!-- PERSON TO MEET: Dropdown with All 32 Integriti Employees -->
         <div class="form-group">
           <label for="host">Person to Meet <span class="required-star">*</span></label>
-          <input type="text" id="host" name="host" placeholder="e.g., Salman Qasir" required />
+          <select id="host" name="host" required>
+            <option value="" disabled selected>-- Select Person to Meet --</option>
+            <option value="abdul.wasay@integriti.io" data-name="Abdul Wasay">Abdul Wasay (abdul.wasay@integriti.io)</option>
+            <option value="ahmer.awan@integriti.io" data-name="Ahmer Arsalan">Ahmer Arsalan (ahmer.awan@integriti.io)</option>
+            <option value="ahsan.arshad@integriti.io" data-name="Ahsan Arshad">Ahsan Arshad (ahsan.arshad@integriti.io)</option>
+            <option value="ali.jaffari@integriti.io" data-name="Ali Mehdi Jaffri">Ali Mehdi Jaffri (ali.jaffari@integriti.io)</option>
+            <option value="alia.mehboob@integriti.io" data-name="Alia Mehboob">Alia Mehboob (alia.mehboob@integriti.io)</option>
+            <option value="asim.jahangir@integriti.io" data-name="Asim Jahangir">Asim Jahangir (asim.jahangir@integriti.io)</option>
+            <option value="hammad.rafi@integriti.io" data-name="Hammad Rafi">Hammad Rafi (hammad.rafi@integriti.io)</option>
+            <option value="hamza.majeed@integriti.io" data-name="Hamza Majeed">Hamza Majeed (hamza.majeed@integriti.io)</option>
+            <option value="ibrar.ahmad@integriti.io" data-name="Ibrar Ahmad">Ibrar Ahmad (ibrar.ahmad@integriti.io)</option>
+            <option value="ibrahim.javed@integriti.io" data-name="Ibrahim Javaid">Ibrahim Javaid (ibrahim.javed@integriti.io)</option>
+            <option value="imran.khalid@integriti.io" data-name="Imran Khalid">Imran Khalid (imran.khalid@integriti.io)</option>
+            <option value="kamran.azam@integriti.io" data-name="Kamran Azam">Kamran Azam (kamran.azam@integriti.io)</option>
+            <option value="mohid.abdullah@integriti.io" data-name="Mohid Abdullah">Mohid Abdullah (mohid.abdullah@integriti.io)</option>
+            <option value="abdul.khaliq@integriti.io" data-name="Muhammad Abdul Khaliq">Muhammad Abdul Khaliq (abdul.khaliq@integriti.io)</option>
+            <option value="muhammad.ahmad@integriti.io" data-name="Muhammad Ahmad">Muhammad Ahmad (muhammad.ahmad@integriti.io)</option>
+            <option value="ahsan.hanif@integriti.io" data-name="Muhammad Ahsan Hanif">Muhammad Ahsan Hanif (ahsan.hanif@integriti.io)</option>
+            <option value="faizan.majid@integriti.io" data-name="Muhammad Faizan Majid">Muhammad Faizan Majid (faizan.majid@integriti.io)</option>
+            <option value="muhammad.haseeb@integriti.io" data-name="Muhammad Haseeb">Muhammad Haseeb (muhammad.haseeb@integriti.io)</option>
+            <option value="muhammad.sabtain@integriti.io" data-name="Muhammad Sabtain Hamza">Muhammad Sabtain Hamza (muhammad.sabtain@integriti.io)</option>
+            <option value="muhammad.talha@integriti.io" data-name="Muhammad Talha">Muhammad Talha (muhammad.talha@integriti.io)</option>
+            <option value="mustafa.faisal@integriti.io" data-name="Mustafa Faisal">Mustafa Faisal (mustafa.faisal@integriti.io)</option>
+            <option value="rana.hasnain@integriti.io" data-name="Rana Hasnain">Rana Hasnain (rana.hasnain@integriti.io)</option>
+            <option value="ridda.husain@integriti.io" data-name="Ridda Husain">Ridda Husain (ridda.husain@integriti.io)</option>
+            <option value="rizwan.iqbal@integriti.io" data-name="Rizwan Iqbal">Rizwan Iqbal (rizwan.iqbal@integriti.io)</option>
+            <option value="sajid.masood@integriti.io" data-name="Sajid Masood">Sajid Masood (sajid.masood@integriti.io)</option>
+            <option value="salman.qasir@integriti.io" data-name="Salman Qasir">Salman Qasir (salman.qasir@integriti.io)</option>
+            <option value="ali.mehdi@integriti.io" data-name="Syed Ali Mehdi">Syed Ali Mehdi (ali.mehdi@integriti.io)</option>
+            <option value="talha.khalid@integriti.io" data-name="Talha Khalid">Talha Khalid (talha.khalid@integriti.io)</option>
+            <option value="ubaid.rehman@integriti.io" data-name="Ubaid Ur Rehman">Ubaid Ur Rehman (ubaid.rehman@integriti.io)</option>
+            <option value="uqba.manzoor@integriti.io" data-name="Uqba Manzoor">Uqba Manzoor (uqba.manzoor@integriti.io)</option>
+            <option value="uswa.fatima@integriti.io" data-name="Uswa Fatima">Uswa Fatima (uswa.fatima@integriti.io)</option>
+            <option value="yousaf.faisal@integriti.io" data-name="Yousaf Faisal">Yousaf Faisal (yousaf.faisal@integriti.io)</option>
+          </select>
         </div>
 
-        <!-- 2. CNIC / ID Card Field (Auto Formatted) -->
         <div class="form-group">
           <label for="cnic">CNIC / ID Card Number <span class="required-star">*</span></label>
-          <input 
-            type="text" 
-            id="cnic" 
-            name="cnic" 
-            placeholder="00000-0000000-0" 
-            maxlength="15" 
-            required 
-          />
+          <input type="text" id="cnic" name="cnic" placeholder="00000-0000000-0" maxlength="15" required />
           <div class="field-hint">Format: 00000-0000000-0</div>
         </div>
 
-        <!-- 3. Visit Date -->
         <div class="form-group">
           <label for="visitDate">Visit Date <span class="required-star">*</span></label>
           <input type="date" id="visitDate" name="visitDate" required />
         </div>
 
-        <!-- Purpose of Visit -->
         <div class="form-group">
           <label for="purpose">Purpose of Visit <span class="required-star">*</span></label>
           <select id="purpose" name="purpose" required>
@@ -512,7 +340,6 @@
           </select>
         </div>
 
-        <!-- Submit Button (Triggers Confirmation Pop-up) -->
         <button type="button" id="openModalBtn" class="btn-submit">
           <span>Complete Check-In</span>
         </button>
@@ -524,7 +351,7 @@
     </footer>
   </main>
 
-  <!-- 4. Confirmation Pop-up Modal -->
+  <!-- Confirmation Modal -->
   <div class="modal-overlay" id="confirmModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -560,16 +387,15 @@
     const alertMessage = document.getElementById('alertMessage');
     const cnicInput = document.getElementById('cnic');
     const visitDateInput = document.getElementById('visitDate');
+    const hostSelect = document.getElementById('host');
 
-    // Set today's date by default
     const today = new Date().toISOString().split('T')[0];
     visitDateInput.value = today;
 
-    // Automatic CNIC Masking: 00000-0000000-0
+    // CNIC Auto Formatting (00000-0000000-0)
     cnicInput.addEventListener('input', function (e) {
-      let val = e.target.value.replace(/\D/g, ''); // Numbers only
+      let val = e.target.value.replace(/\D/g, '');
       if (val.length > 13) val = val.substring(0, 13);
-      
       let formatted = val;
       if (val.length > 5 && val.length <= 12) {
         formatted = val.substring(0, 5) + '-' + val.substring(5);
@@ -585,64 +411,43 @@
       statusAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    function hideAlert() {
-      statusAlert.className = 'alert';
-    }
+    function hideAlert() { statusAlert.className = 'alert'; }
 
     function validatePhone(phoneStr) {
       const digitsOnly = phoneStr.replace(/\D/g, '');
       return digitsOnly.length >= 7 && digitsOnly.length <= 15;
     }
 
-    // Step 1: Open Confirmation Pop-up
     openModalBtn.addEventListener('click', function () {
       hideAlert();
 
       const visitorName = document.getElementById('visitorName').value.trim();
       const phone = document.getElementById('phone').value.trim();
-      const host = document.getElementById('host').value.trim();
+      const hostEmail = hostSelect.value;
+      const hostOption = hostSelect.options[hostSelect.selectedIndex];
+      const hostName = hostOption ? hostOption.getAttribute('data-name') : '';
       const cnic = document.getElementById('cnic').value.trim();
       const visitDate = document.getElementById('visitDate').value;
       const purpose = document.getElementById('purpose').value;
       const company = document.getElementById('company').value.trim();
 
-      if (!visitorName) {
-        showAlert('error', 'Please enter your full name.');
-        return;
-      }
-      if (!validatePhone(phone)) {
-        showAlert('error', 'Please enter a valid phone number (7 to 15 digits).');
-        return;
-      }
-      if (!host) {
-        showAlert('error', 'Please enter the name of the person you are meeting.');
-        return;
-      }
-      // CNIC Validation: exactly 15 characters (5 digits + '-' + 7 digits + '-' + 1 digit)
-      const cnicRegex = /^[0-9]{5}-[0-9]{7}-[0-9]{1}$/;
-      if (!cnicRegex.test(cnic)) {
-        showAlert('error', 'Please enter a complete CNIC in 00000-0000000-0 format.');
-        return;
-      }
-      if (!visitDate) {
-        showAlert('error', 'Please choose the visit date.');
-        return;
-      }
-      if (!purpose) {
-        showAlert('error', 'Please choose the purpose of your visit.');
-        return;
-      }
+      if (!visitorName) { showAlert('error', 'Please enter your full name.'); return; }
+      if (!validatePhone(phone)) { showAlert('error', 'Please enter a valid phone number (7 to 15 digits).'); return; }
+      if (!hostEmail) { showAlert('error', 'Please select the person you are meeting from the list.'); return; }
 
-      // Populate Modal Fields
+      const cnicRegex = /^[0-9]{5}-[0-9]{7}-[0-9]{1}$/;
+      if (!cnicRegex.test(cnic)) { showAlert('error', 'Please enter a complete CNIC in 00000-0000000-0 format.'); return; }
+      if (!visitDate) { showAlert('error', 'Please choose the visit date.'); return; }
+      if (!purpose) { showAlert('error', 'Please choose the purpose of your visit.'); return; }
+
       document.getElementById('revName').textContent = visitorName;
       document.getElementById('revPhone').textContent = phone;
       document.getElementById('revCompany').textContent = company || 'N/A';
-      document.getElementById('revHost').textContent = host;
+      document.getElementById('revHost').textContent = `${hostName} (${hostEmail})`;
       document.getElementById('revCnic').textContent = cnic;
       document.getElementById('revDate').textContent = visitDate;
       document.getElementById('revPurpose').textContent = purpose;
 
-      // Show Pop-up
       confirmModal.classList.add('active');
     });
 
@@ -650,16 +455,20 @@
       confirmModal.classList.remove('active');
     });
 
-    // Step 2: Confirm and Submit Data via Fetch with Full Page Loader
     confirmSubmitBtn.addEventListener('click', async function () {
-      confirmModal.classList.remove('active'); // Close modal
-      pageLoader.classList.add('active');     // Show 5. Full Page Loader
+      confirmModal.classList.remove('active');
+      pageLoader.classList.add('active');
+
+      const hostOption = hostSelect.options[hostSelect.selectedIndex];
+      const hostName = hostOption ? hostOption.getAttribute('data-name') : '';
+      const hostEmail = hostSelect.value;
 
       const formData = new URLSearchParams();
       formData.append('visitorName', document.getElementById('visitorName').value.trim());
       formData.append('phone', document.getElementById('phone').value.trim());
       formData.append('company', document.getElementById('company').value.trim());
-      formData.append('host', document.getElementById('host').value.trim());
+      formData.append('host', hostName);
+      formData.append('hostEmail', hostEmail);
       formData.append('cnic', document.getElementById('cnic').value.trim());
       formData.append('visitDate', document.getElementById('visitDate').value);
       formData.append('purpose', document.getElementById('purpose').value);
@@ -676,7 +485,7 @@
         if (data.result === 'success') {
           showAlert('success', `Welcome, ${document.getElementById('visitorName').value.trim()}! Your check-in is complete.`);
           form.reset();
-          visitDateInput.value = today; // Re-set date after reset
+          visitDateInput.value = today;
         } else {
           throw new Error(data.message || 'Server error occurred.');
         }
@@ -684,7 +493,7 @@
         console.error('Submission Error:', error);
         showAlert('error', `Check-in failed: ${error.message || 'Network error, please try again.'}`);
       } finally {
-        pageLoader.classList.remove('active'); // Hide Loader
+        pageLoader.classList.remove('active');
       }
     });
   </script>
