@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Office Visitor Check-In</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1e3a8a;
+      --primary-focus: rgba(30, 64, 175, 0.18);
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --error-bg: #fef2f2;
+      --error-text: #991b1b;
+      --error-border: #f87171;
+      --success-bg: #f0fdf4;
+      --success-text: #166534;
+      --success-border: #4ade80;
+      --radius: 12px;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 480px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      overflow: hidden;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 28px 24px 22px;
+      text-align: center;
+      border-bottom: 4px solid var(--primary);
+    }
+
+    .header-logo {
+      max-width: 70px;
+      height: auto;
+      margin-bottom: 5px;
+      display: inline-block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      color: #93c5fd;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .card-header h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .card-header p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .card-body {
+      padding: 28px 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .required-star {
+      color: #dc2626;
+      margin-left: 2px;
+    }
+
+    .optional-tag {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background-color: #f8fafc;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      background-color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-focus);
+    }
+
+    .field-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #ffffff;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2);
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-submit:active {
+      transform: translateY(1px);
+    }
+
+    /* Status Alert */
+    .alert {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .alert.show {
+      display: flex;
+    }
+
+    .alert-success {
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      border-color: var(--success-border);
+    }
+
+    .alert-error {
+      background-color: var(--error-bg);
+      color: var(--error-text);
+      border-color: var(--error-border);
+    }
+
+    .card-footer {
+      text-align: center;
+      padding: 14px 24px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Modal / Pop-up Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      animation: modalScale 0.25s ease-out;
+    }
+
+    @keyframes modalScale {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 16px 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 0.88rem;
+    }
+
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .review-label {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .review-val {
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: right;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      padding: 16px 20px 20px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 11px;
+      border-radius: 6px;
+      background: #e2e8f0;
+      color: #334155;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-confirm {
+      flex: 1.3;
+      padding: 11px;
+      border-radius: 6px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       Uiverse.io Full Page Loader Styles
+       ========================================= */
+    .loader-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.88);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader-backdrop.active {
+      display: block;
+    }
+
+    .loader {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .jimu-primary-loading:before,
+    .jimu-primary-loading:after {
+      position: absolute;
+      top: 0;
+      content: '';
+    }
+
+    .jimu-primary-loading:before {
+      left: -19.992px;
+    }
+
+    .jimu-primary-loading:after {
+      left: 19.992px;
+      -webkit-animation-delay: 0.32s !important;
+      animation-delay: 0.32s !important;
+    }
+
+    .jimu-primary-loading:before,
+    .jimu-primary-loading:after,
+    .jimu-primary-loading {
+      background: #076fe5;
+      -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+      animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+      width: 13.6px;
+      height: 32px;
+    }
+
+    .jimu-primary-loading {
+      text-indent: -9999em;
+      margin: auto;
+      position: absolute;
+      right: calc(50% - 6.8px);
+      top: calc(50% - 16px);
+      -webkit-animation-delay: 0.16s !important;
+      animation-delay: 0.16s !important;
+    }
+
+    @-webkit-keyframes loading-keys-app-loading {
+      0%, 80%, 100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+      }
+      40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+      }
+    }
+
+    @keyframes loading-keys-app-loading {
+      0%, 80%, 100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+      }
+      40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-Page Loader Overlay -->
+  <div class="loader-backdrop" id="pageLoader">
+    <div class="loader">
+      <div class="justify-content-center jimu-primary-loading"></div>
+    </div>
+  </div>
+
+  <main class="card">
+    <header class="card-header">
+      <!-- 1. Company Logo -->
+      <img src="logo white1.png" alt="Company Logo" class="header-logo" onerror="this.style.display='none'" />
+      <div><span class="badge"><h1>Integrit Reception Desk</h1></span></div>
+      <h3>Visitor Registration</h3>
+      <p>Please enter your details below to check in</p>
+    </header>
+
+    <section class="card-body">
+      <!-- Alert Message -->
+      <div id="statusAlert" class="alert" role="alert">
+        <div id="alertMessage"></div>
+      </div>
+
+      <form id="visitorForm" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="visitorName">Full Name <span class="required-star">*</span></label>
+          <input type="text" id="visitorName" name="visitorName" placeholder="e.g., Ali Raza" required autocomplete="name" />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required-star">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g., 0300 1234567" required autocomplete="tel" />
+          <div class="field-hint">Enter a valid 7–15 digit phone number.</div>
+        </div>
+
+        <!-- Company Name -->
+        <div class="form-group">
+          <label for="company">Company / Organization <span class="optional-tag">(Optional)</span></label>
+          <input type="text" id="company" name="company" placeholder="e.g., Integriti Pvt Ltd." autocomplete="organization" />
+        </div>
+
+        <!-- Person to Meet -->
+        <div class="form-group">
+          <label for="host">Person to Meet <span class="required-star">*</span></label>
+          <input type="text" id="host" name="host" placeholder="e.g., Salman Qasir" required />
+        </div>
+
+        <!-- 2. CNIC / ID Card Field (Auto Formatted) -->
+        <div class="form-group">
+          <label for="cnic">CNIC / ID Card Number <span class="required-star">*</span></label>
+          <input 
+            type="text" 
+            id="cnic" 
+            name="cnic" 
+            placeholder="00000-0000000-0" 
+            maxlength="15" 
+            required 
+          />
+          <div class="field-hint">Format: 00000-0000000-0</div>
+        </div>
+
+        <!-- 3. Visit Date -->
+        <div class="form-group">
+          <label for="visitDate">Visit Date <span class="required-star">*</span></label>
+          <input type="date" id="visitDate" name="visitDate" required />
+        </div>
+
+        <!-- Purpose of Visit -->
+        <div class="form-group">
+          <label for="purpose">Purpose of Visit <span class="required-star">*</span></label>
+          <select id="purpose" name="purpose" required>
+            <option value="" disabled selected>Select purpose of visit</option>
+            <option value="Interview">Interview</option>
+            <option value="Business Meeting">Business Meeting</option>
+            <option value="Delivery">Delivery</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Personal">Personal</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Submit Button (Triggers Confirmation Pop-up) -->
+        <button type="button" id="openModalBtn" class="btn-submit">
+          <span>Complete Check-In</span>
+        </button>
+      </form>
+    </section>
+
+    <footer class="card-footer">
+      Thank you for visiting our office. Your host will be notified shortly.
+    </footer>
+  </main>
+
+  <!-- 4. Confirmation Pop-up Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Confirm Your Check-In Details</h3>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 12px; color: #475569;">Please verify your details before registering:</p>
+        <div class="review-row"><span class="review-label">Name:</span> <span class="review-val" id="revName"></span></div>
+        <div class="review-row"><span class="review-label">Phone:</span> <span class="review-val" id="revPhone"></span></div>
+        <div class="review-row"><span class="review-label">Company:</span> <span class="review-val" id="revCompany"></span></div>
+        <div class="review-row"><span class="review-label">Host:</span> <span class="review-val" id="revHost"></span></div>
+        <div class="review-row"><span class="review-label">CNIC / ID:</span> <span class="review-val" id="revCnic"></span></div>
+        <div class="review-row"><span class="review-label">Date:</span> <span class="review-val" id="revDate"></span></div>
+        <div class="review-row"><span class="review-label">Purpose:</span> <span class="review-val" id="revPurpose"></span></div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="cancelModalBtn">Edit Details</button>
+        <button type="button" class="btn-confirm" id="confirmSubmitBtn">Confirm & Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzo--xwnjlj8ZFzamsCgx6kuPVLUK3YPjQi8PYkaFgf0mI0Xhegcxx-slfi1LblHZmF/exec';
+
+    const form = document.getElementById('visitorForm');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const confirmModal = document.getElementById('confirmModal');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
+    const pageLoader = document.getElementById('pageLoader');
+    const statusAlert = document.getElementById('statusAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    const cnicInput = document.getElementById('cnic');
+    const visitDateInput = document.getElementById('visitDate');
+
+    // Set today's date by default
+    const today = new Date().toISOString().split('T')[0];
+    visitDateInput.value = today;
+
+    // Automatic CNIC Masking: 00000-0000000-0
+    cnicInput.addEventListener('input', function (e) {
+      let val = e.target.value.replace(/\D/g, ''); // Numbers only
+      if (val.length > 13) val = val.substring(0, 13);
+      
+      let formatted = val;
+      if (val.length > 5 && val.length <= 12) {
+        formatted = val.substring(0, 5) + '-' + val.substring(5);
+      } else if (val.length > 12) {
+        formatted = val.substring(0, 5) + '-' + val.substring(5, 12) + '-' + val.substring(12, 13);
+      }
+      e.target.value = formatted;
+    });
+
+    function showAlert(type, msg) {
+      statusAlert.className = `alert show alert-${type}`;
+      alertMessage.textContent = msg;
+      statusAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideAlert() {
+      statusAlert.className = 'alert';
+    }
+
+    function validatePhone(phoneStr) {
+      const digitsOnly = phoneStr.replace(/\D/g, '');
+      return digitsOnly.length >= 7 && digitsOnly.length <= 15;
+    }
+
+    // Step 1: Open Confirmation Pop-up
+    openModalBtn.addEventListener('click', function () {
+      hideAlert();
+
+      const visitorName = document.getElementById('visitorName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const host = document.getElementById('host').value.trim();
+      const cnic = document.getElementById('cnic').value.trim();
+      const visitDate = document.getElementById('visitDate').value;
+      const purpose = document.getElementById('purpose').value;
+      const company = document.getElementById('company').value.trim();
+
+      if (!visitorName) {
+        showAlert('error', 'Please enter your full name.');
+        return;
+      }
+      if (!validatePhone(phone)) {
+        showAlert('error', 'Please enter a valid phone number (7 to 15 digits).');
+        return;
+      }
+      if (!host) {
+        showAlert('error', 'Please enter the name of the person you are meeting.');
+        return;
+      }
+      // CNIC Validation: exactly 15 characters (5 digits + '-' + 7 digits + '-' + 1 digit)
+      const cnicRegex = /^[0-9]{5}-[0-9]{7}-[0-9]{1}$/;
+      if (!cnicRegex.test(cnic)) {
+        showAlert('error', 'Please enter a complete CNIC in 00000-0000000-0 format.');
+        return;
+      }
+      if (!visitDate) {
+        showAlert('error', 'Please choose the visit date.');
+        return;
+      }
+      if (!purpose) {
+        showAlert('error', 'Please choose the purpose of your visit.');
+        return;
+      }
+
+      // Populate Modal Fields
+      document.getElementById('revName').textContent = visitorName;
+      document.getElementById('revPhone').textContent = phone;
+      document.getElementById('revCompany').textContent = company || 'N/A';
+      document.getElementById('revHost').textContent = host;
+      document.getElementById('revCnic').textContent = cnic;
+      document.getElementById('revDate').textContent = visitDate;
+      document.getElementById('revPurpose').textContent = purpose;
+
+      // Show Pop-up
+      confirmModal.classList.add('active');
+    });
+
+    cancelModalBtn.addEventListener('click', function () {
+      confirmModal.classList.remove('active');
+    });
+
+    // Step 2: Confirm and Submit Data via Fetch with Full Page Loader
+    confirmSubmitBtn.addEventListener('click', async function () {
+      confirmModal.classList.remove('active'); // Close modal
+      pageLoader.classList.add('active');     // Show 5. Full Page Loader
+
+      const formData = new URLSearchParams();
+      formData.append('visitorName', document.getElementById('visitorName').value.trim());
+      formData.append('phone', document.getElementById('phone').value.trim());
+      formData.append('company', document.getElementById('company').value.trim());
+      formData.append('host', document.getElementById('host').value.trim());
+      formData.append('cnic', document.getElementById('cnic').value.trim());
+      formData.append('visitDate', document.getElementById('visitDate').value);
+      formData.append('purpose', document.getElementById('purpose').value);
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          redirect: 'follow',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.result === 'success') {
+          showAlert('success', `Welcome, ${document.getElementById('visitorName').value.trim()}! Your check-in is complete.`);
+          form.reset();
+          visitDateInput.value = today; // Re-set date after reset
+        } else {
+          throw new Error(data.message || 'Server error occurred.');
+        }
+      } catch (error) {
+        console.error('Submission Error:', error);
+        showAlert('error', `Check-in failed: ${error.message || 'Network error, please try again.'}`);
+      } finally {
+        pageLoader.classList.remove('active'); // Hide Loader
+      }
+    });
+  </script>
+</body>
+</html>
